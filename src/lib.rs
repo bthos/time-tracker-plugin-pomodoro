@@ -145,11 +145,13 @@ impl Plugin for PomodoroPlugin {
 }
 
 // FFI exports for dynamic loading
+#[allow(improper_ctypes_definitions)]
 #[no_mangle]
 pub extern "C" fn _plugin_create() -> *mut dyn Plugin {
     Box::into_raw(Box::new(PomodoroPlugin::new()))
 }
 
+#[allow(improper_ctypes_definitions)]
 #[no_mangle]
 pub extern "C" fn _plugin_destroy(plugin: *mut dyn Plugin) {
     unsafe {

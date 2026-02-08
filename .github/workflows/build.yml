@@ -47,12 +47,14 @@ jobs:
             ${{ runner.os }}-cargo-${{ matrix.target }}-
 
       - name: Build plugin
+        shell: bash
         run: |
           cargo build --release --target ${{ matrix.target }}
           mkdir -p release
           cp target/${{ matrix.target }}/release/${{ matrix.library-name }} release/${{ matrix.artifact-name }}
 
       - name: Copy plugin manifest
+        shell: bash
         run: |
           cp plugin.toml release/plugin.toml
 

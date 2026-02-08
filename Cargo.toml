@@ -8,6 +8,7 @@ edition = "2021"
 description = "Pomodoro plugin for Time Tracker"
 
 [lib]
+name = "pomodoro_plugin"
 crate-type = ["cdylib"]
 
 [dependencies]
