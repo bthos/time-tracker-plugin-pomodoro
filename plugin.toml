@@ -7,11 +7,10 @@ author = "TimeTracker"
 
 [backend]
 crate_name = "time_tracker_pomodoro_plugin"
-library_name = "pomodoro_plugin"
 entry_point = "_plugin_create"
 
 [frontend]
-entry = "frontend/index.js"
+entry = "index.js"
 components = ["Pomodoro", "PomodoroTimer", "FocusSessions", "PomodoroWidget"]
 
 [build]
