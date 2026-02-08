@@ -3,6 +3,7 @@
 //! Manages Pomodoro timer and focus sessions
 
 use time_tracker_plugin_sdk::{Plugin, PluginInfo, PluginAPIInterface, EntityType, SchemaChange};
+use time_tracker_plugin_sdk::extensions::{TableColumn, ForeignKey};
 use serde_json;
 
 pub struct PomodoroPlugin {
@@ -36,59 +37,75 @@ impl Plugin for PomodoroPlugin {
                 SchemaChange::CreateTable {
                     table: "focus_sessions".to_string(),
                     columns: vec![
-                        time_tracker_plugin_sdk::TableColumn {
+                        TableColumn {
                             name: "id".to_string(),
                             column_type: "INTEGER PRIMARY KEY AUTOINCREMENT".to_string(),
                             default: None,
                             foreign_key: None,
+                            nullable: false,
+                            primary_key: true,
                         },
-                        time_tracker_plugin_sdk::TableColumn {
+                        TableColumn {
                             name: "started_at".to_string(),
                             column_type: "INTEGER NOT NULL".to_string(),
                             default: None,
                             foreign_key: None,
+                            nullable: false,
+                            primary_key: false,
                         },
-                        time_tracker_plugin_sdk::TableColumn {
+                        TableColumn {
                             name: "ended_at".to_string(),
                             column_type: "INTEGER".to_string(),
                             default: None,
                             foreign_key: None,
+                            nullable: true,
+                            primary_key: false,
                         },
-                        time_tracker_plugin_sdk::TableColumn {
+                        TableColumn {
                             name: "duration_sec".to_string(),
                             column_type: "INTEGER DEFAULT 0".to_string(),
                             default: Some("0".to_string()),
                             foreign_key: None,
+                            nullable: true,
+                            primary_key: false,
                         },
-                        time_tracker_plugin_sdk::TableColumn {
+                        TableColumn {
                             name: "pomodoro_type".to_string(),
                             column_type: "TEXT NOT NULL".to_string(),
                             default: None,
                             foreign_key: None,
+                            nullable: false,
+                            primary_key: false,
                         },
-                        time_tracker_plugin_sdk::TableColumn {
+                        TableColumn {
                             name: "project_id".to_string(),
                             column_type: "INTEGER".to_string(),
                             default: None,
-                            foreign_key: Some(time_tracker_plugin_sdk::ForeignKey {
+                            foreign_key: Some(ForeignKey {
                                 table: "projects".to_string(),
                                 column: "id".to_string(),
                             }),
+                            nullable: true,
+                            primary_key: false,
                         },
-                        time_tracker_plugin_sdk::TableColumn {
+                        TableColumn {
                             name: "task_id".to_string(),
                             column_type: "INTEGER".to_string(),
                             default: None,
-                            foreign_key: Some(time_tracker_plugin_sdk::ForeignKey {
+                            foreign_key: Some(ForeignKey {
                                 table: "tasks".to_string(),
                                 column: "id".to_string(),
                             }),
+                            nullable: true,
+                            primary_key: false,
                         },
-                        time_tracker_plugin_sdk::TableColumn {
+                        TableColumn {
                             name: "completed".to_string(),
                             column_type: "BOOLEAN DEFAULT FALSE".to_string(),
                             default: Some("FALSE".to_string()),
                             foreign_key: None,
+                            nullable: true,
+                            primary_key: false,
                         },
                     ],
                 },

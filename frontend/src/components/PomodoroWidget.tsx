@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePomodoro } from '../../hooks/usePomodoro';
+import { usePomodoro } from '../hooks/usePomodoro';
 import { formatTimerTime } from '../../utils/format';
 import Card from '../Common/Card';
 import Button from '../Common/Button';

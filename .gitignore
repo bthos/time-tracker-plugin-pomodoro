@@ -1,0 +1,25 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# IDE
+.specstory/**
+.cursor*
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Frontend (already handled by frontend/.gitignore, but adding common ones)
+node_modules/
+dist/
+build/

@@ -36,7 +36,7 @@ jobs:
           targets: ${{ matrix.target }}
 
       - name: Cache cargo registry
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cargo/registry
@@ -56,8 +56,17 @@ jobs:
         run: |
           cp plugin.toml release/plugin.toml
 
+      - name: Build frontend
+        shell: bash
+        run: |
+          cd frontend
+          npm ci
+          npm run build
+          cd ..
+          cp -r frontend/dist release/frontend
+
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact-name }}
           path: release/${{ matrix.artifact-name }}
@@ -72,7 +81,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Download all artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: artifacts
 
