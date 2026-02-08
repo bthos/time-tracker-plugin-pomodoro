@@ -11,8 +11,8 @@ library_name = "pomodoro_plugin"
 entry_point = "_plugin_create"
 
 [frontend]
-entry = "pomodoro/index.js"
-components = ["PomodoroTimer", "FocusSessions"]
+entry = "frontend/index.js"
+components = ["Pomodoro", "PomodoroTimer", "FocusSessions", "PomodoroWidget"]
 
 [build]
 targets = ["x86_64-pc-windows-msvc", "x86_64-unknown-linux-gnu", "x86_64-apple-darwin"]
